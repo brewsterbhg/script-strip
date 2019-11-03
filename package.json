@@ -1,0 +1,88 @@
+{
+	"name": "script-strip",
+	"description": "View package scripts and execute them from the cli",
+	"version": "0.1.0",
+	"license": "MIT",
+	"bin": "cli.js",
+	"engines": {
+		"node": ">=8"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/brewsterbhg/script-strip"
+	},
+	"scripts": {
+		"test": "xo && ava",
+		"cz": "git-cz",
+		"lint": "eslint --fix \"**/*.js\"",
+		"pretty": "prettier --write --tab-width 2 \"src/**/*.js\"",
+		"precommit": "lint-staged && npm test"
+	},
+	"dependencies": {
+		"import-jsx": "3.0.0",
+		"ink": "2.5.0",
+		"lodash.get": "4.4.2",
+		"meow": "5.0.0",
+		"prop-types": "15.7.2",
+		"react": "16.10.2"
+	},
+	"devDependencies": {
+		"@babel/preset-env": "7.6.3",
+		"@babel/preset-react": "7.6.3",
+		"@babel/register": "7.6.2",
+		"@commitlint/cli": "8.2.0",
+		"@commitlint/config-conventional": "8.2.0",
+		"ava": "2.4.0",
+		"babel-eslint": "10.0.3",
+		"chalk": "2.4.2",
+		"eslint-config-react-app": "5.0.2",
+		"eslint-config-xo-react": "0.20.0",
+		"eslint-plugin-flowtype": "4.3.0",
+		"eslint-plugin-import": "2.18.2",
+		"eslint-plugin-jsx-a11y": "6.2.3",
+		"eslint-plugin-react": "7.16.0",
+		"eslint-plugin-react-hooks": "2.1.2",
+		"husky": "3.0.9",
+		"ink-testing-library": "1.0.2",
+		"lint-staged": "9.4.2",
+		"prettier": "1.18.2",
+		"xo": "0.25.3"
+	},
+	"ava": {
+		"require": [
+			"@babel/register"
+		]
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-react",
+			[
+				"@babel/preset-env",
+				{
+					"targets": {
+						"node": true
+					}
+				}
+			]
+		]
+	},
+	"xo": {
+		"extends": "xo-react"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"lint-staged": {
+		"*.js": [
+			"npm run pretty",
+			"git add"
+		]
+	}
+}
